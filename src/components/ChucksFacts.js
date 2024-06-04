@@ -5,11 +5,11 @@ function MoviesList(props) {
     const [word, setWord] = useState("");
 
     const search = () => {
-        alert(`El email ingresado es ${word}`)
+        alert(`buscando ${word}`)
         if (props.onSearch) {
             props.onSearch(word); // Llamar a la función pasada por props con la palabra buscada
         } else {
-            console.error("onSearch prop is not defined");
+            console.error("error");
         }
     };
 
@@ -45,22 +45,25 @@ function MoviesList(props) {
                     <div className="col-12 text-left">
                         <ul className="arrow-styled">
                             {
-                                props.movies.map((movie, index) => {
+                                props.chucks.map((chuck, index) => {
                                     return (
                                         <div key={index} className='row'>
                                             <Row>
                                                 <Col>
                                                     <h2>Fact:</h2>
-                                                    <label>{movie.value}</label>
+                                                    <label>{chuck.value}</label>
                                                     <br />
                                                     <label>Fecha:</label>
-                                                    <label>{movie.created_at}</label>
+                                                    <label>{chuck.created_at}</label>
                                                     <br />
                                                     <label>categories:</label>
-                                                    <label>{movie.categories}</label>
+                                                    <label>{chuck.categories}</label>
                                                 </Col>
                                                 <Col>
-                                                    <Button variant={"primary"} size={"sm"}>❤</Button>
+                                                    <Button variant={"primary"} 
+                                                    size={"sm"} 
+                                                    onClick={() => props.addToFavorites(chuck)}
+                                                    >❤</Button>
                                                 </Col>
                                             </Row>
                                         </div>

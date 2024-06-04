@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Spinner from '../components/Spinner';
-import MoviesList from "../components/MoviesList";
+import ChucksFacts from "../components/ChucksFacts";
 
 function InfoPanel() {
     const [loaded, setDataLoaded] = useState(false);
-    const [movieData, setMoviesData] = useState([]);
-    const [searchWord, setSearchWord] = useState(""); // Nuevo estado para la palabra buscada
+    const [chuckData, setChuckData] = useState([]);
+    const [searchWord, setSearchWord] = useState(""); 
+    const [favorites, setFavorites] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -15,7 +16,7 @@ function InfoPanel() {
                     const result = await axios.get(`https://api.chucknorris.io/jokes/search?query=${searchWord}`);
                     if (result.data) {
                         setDataLoaded(true);
-                        setMoviesData(result.data.result); // Suponiendo que la API devuelve una lista en `result`
+                        setChuckData(result.data.result); 
                     }
                 } catch (error) {
                     console.error("Error fetching data:", error);
@@ -31,10 +32,14 @@ function InfoPanel() {
         setSearchWord(word);
     };
 
+    const addToFavorites = (fact) => {
+        setFavorites([...favorites, fact]);
+    };
+
     return (
         <div className="App">
             <Spinner dataLoaded={loaded} />
-            <MoviesList movies={movieData} onSearch={handleSearch} /> {/* Pasar la función como prop */}
+            <ChucksFacts chucks ={chuckData} onSearch={handleSearch} /> {/* Pasar la función como prop */}
         </div>
     );
 }
