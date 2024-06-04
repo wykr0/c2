@@ -16,11 +16,6 @@ function MoviesList(props) {
     return (
         <section id="moviesList">
             <Container>
-                <Row style={{ height: "50px", backgroundColor: 'grey' }}>
-                    <Col>
-                        <h2>Chuck Norris Facts</h2>
-                    </Col>
-                </Row>
                 <Row>
                     <Col md={7} style={{ marginLeft: '30px' }}>
                         <Form.Group>
@@ -53,10 +48,12 @@ function MoviesList(props) {
                                                     <h2>Fact:</h2>
                                                     <label>{chuck.value}</label>
                                                     <br />
-                                                    <label>Fecha:</label>
+                                                    <br />
+                                                    <h6>Fecha:</h6>
                                                     <label>{chuck.created_at}</label>
                                                     <br />
-                                                    <label>categories:</label>
+                                                    <br />
+                                                    <h6>categories:</h6>
                                                     <label>{chuck.categories}</label>
                                                 </Col>
                                                 <Col>
